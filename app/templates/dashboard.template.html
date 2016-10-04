@@ -1,0 +1,13 @@
+<div id="dashboard" class="container" *ngIf="isDashboardLoaded">
+    <!-- <logout-btn></logout-btn> -->
+    <h2>Dashboard of {{user.fullName}}</h2>
+    <div class="list-group">
+        <a class="list-group-item" *ngFor="let activity of activities" routerLink="/login">
+            <img class="pull-left user-img" src="{{activity.user.imgUrl}}">
+            <h4 class="list-group-item-heading">{{activity.title}}</h4>
+            <p class="list-group-item-text">{{activity.description}}</p>
+        </a>
+    </div>
+</div>
+<loading-img *ngIf="!isDashboardLoaded"></loading-img>
+<router-outlet></router-outlet>
