@@ -14,12 +14,14 @@ var user_service_1 = require('./../services/user.service');
 var activity_service_1 = require('./../services/activity.service');
 var DashboardComponent = (function () {
     function DashboardComponent(userService, activityService, cookieService) {
-        var _this = this;
         this.userService = userService;
         this.activityService = activityService;
         this.cookieService = cookieService;
         this.isDashboardLoaded = false;
-        var userId = cookieService.get('userId');
+    }
+    DashboardComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        var userId = this.cookieService.get('userId');
         this.userService.getUserById(userId).subscribe(function (data) {
             _this.user = data.json();
             _this.activityService.getActivities().subscribe(function (data) {
@@ -27,7 +29,7 @@ var DashboardComponent = (function () {
                 _this.isDashboardLoaded = true;
             });
         });
-    }
+    };
     DashboardComponent = __decorate([
         core_1.Component({
             selector: 'dashboard',

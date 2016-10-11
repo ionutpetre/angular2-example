@@ -8,7 +8,7 @@ import { ProfileComponent } from './components/profile.component';
 
 const appRoutes: Routes = [{
     path: '',
-    component: DashboardComponent
+    component: LoginComponent
 }, {
     path: 'login',
     component: LoginComponent
@@ -16,7 +16,7 @@ const appRoutes: Routes = [{
     path: 'dashboard',
     component: DashboardComponent
 }, {
-    path: 'profile',
+    path: 'profile/:id',
     component: ProfileComponent
 }];
 

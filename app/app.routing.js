@@ -5,7 +5,7 @@ var dashboard_component_1 = require('./components/dashboard.component');
 var profile_component_1 = require('./components/profile.component');
 var appRoutes = [{
         path: '',
-        component: dashboard_component_1.DashboardComponent
+        component: login_component_1.LoginComponent
     }, {
         path: 'login',
         component: login_component_1.LoginComponent
@@ -13,7 +13,7 @@ var appRoutes = [{
         path: 'dashboard',
         component: dashboard_component_1.DashboardComponent
     }, {
-        path: 'profile',
+        path: 'profile/:id',
         component: profile_component_1.ProfileComponent
     }];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

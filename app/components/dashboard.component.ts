@@ -16,10 +16,10 @@ export class DashboardComponent {
     activities: activity[];
     isDashboardLoaded = false;
 
-    constructor(private userService: UserService,
-        private activityService: ActivityService,
-        private cookieService: CookieService) {
-        var userId = cookieService.get('userId');
+    constructor(private userService: UserService, private activityService: ActivityService, private cookieService: CookieService) { }
+
+    ngOnInit(): void {
+        var userId = this.cookieService.get('userId');
         this.userService.getUserById(userId).subscribe(data => {
             this.user = data.json();
             this.activityService.getActivities().subscribe(data => {

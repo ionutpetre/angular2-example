@@ -17,15 +17,13 @@ export class LoginComponent {
         private router: Router) { }
 
     login() {
-        this.userService.authUser(this.username, this.password).subscribe(
-            data => {
-                var user = data.json();
-                if (data.json().hasOwnProperty('id')) {
-                    console.log('user logged: ', user);
-                    this.cookieService.put('userId', user.id);
-                    this.router.navigateByUrl('/dashboard');
-                }
+        this.userService.authUser(this.username, this.password).subscribe(data => {
+            var user = data.json();
+            if (data.json().hasOwnProperty('id')) {
+                console.log('user logged: ', user);
+                this.cookieService.put('userId', user.id);
+                this.router.navigateByUrl('/dashboard');
             }
-        );
+        });
     }
 }

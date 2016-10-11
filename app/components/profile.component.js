@@ -9,25 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var common_1 = require('@angular/common');
 var user_service_1 = require('./../services/user.service');
 var ProfileComponent = (function () {
-    function ProfileComponent(userService) {
-        var _this = this;
+    function ProfileComponent(userService, route, location) {
         this.userService = userService;
+        this.route = route;
+        this.location = location;
         this.isProfileLoaded = false;
-        var userId = 1;
-        this.userService.getUserById(userId).subscribe(function (data) {
-            _this.user = data.json();
-            _this.isProfileLoaded = true;
-        });
     }
+    ProfileComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.forEach(function (params) {
+            var userId = params['id'];
+            _this.userService.getUserById(userId).subscribe(function (data) {
+                _this.user = data.json();
+                _this.isProfileLoaded = true;
+            });
+        });
+    };
     ProfileComponent = __decorate([
         core_1.Component({
             selector: 'profile',
             templateUrl: 'app/templates/profile.template.html',
             providers: [user_service_1.UserService]
         }), 
-        __metadata('design:paramtypes', [user_service_1.UserService])
+        __metadata('design:paramtypes', [user_service_1.UserService, router_1.ActivatedRoute, common_1.Location])
     ], ProfileComponent);
     return ProfileComponent;
 }());
